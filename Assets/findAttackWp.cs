@@ -17,11 +17,11 @@ namespace TowerDefence
 
         void Update()
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 //throww.Play();
                 GameObject projectile = Instantiate(bullet) as GameObject;
-                projectile.transform.position = transform.position + transform.GetChild(0).gameObject.transform.forward*40;
+                projectile.transform.position = transform.position+ new Vector3 (0,12,0)  + transform.GetChild(0).gameObject.transform.forward*20;
                 Rigidbody rb = projectile.GetComponent<Rigidbody>();
                 rb.velocity = transform.GetChild(0).gameObject.transform.forward *300;
                 projectile.GetComponent<AudioSource>().Play();

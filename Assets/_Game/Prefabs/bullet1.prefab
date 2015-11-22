@@ -33,7 +33,7 @@ GameObject:
   - 82: {fileID: 8248390}
   m_Layer: 0
   m_Name: bullet1
-  m_TagString: weakPoint
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,7 +199,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131196}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
@@ -448,7 +448,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 11
+    maxNumParticles: 111
   ShapeModule:
     serializedVersion: 2
     enabled: 1

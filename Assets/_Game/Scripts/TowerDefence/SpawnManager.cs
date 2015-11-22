@@ -35,9 +35,17 @@ namespace TowerDefence {
 			get;
 			private set;
 		}
+		
+		[SerializeField]
+		public GameObject WinMenu;
 
 		private ObjectPool objectPool;
 		private bool spawnEndlessly;
+		private int num=0;
+		public int wave=1;
+		
+		public float time;
+        public int curParkTime = 0;
 
 		//===================================================
 		// UNITY METHODS
@@ -62,7 +70,25 @@ namespace TowerDefence {
 		/// Update.
 		/// </summary>
 		void Update() {
+            if (wave == 2)
+            {
+                if (num == 1)
+                {
+                    spawnEndlessly = false;
+                }
 
+            }
+
+            if (num==10){
+				/*if(wave==3&&EnemyList.Count==0){
+					WinMenu.SetActive(true);
+				}*/
+				num=0;
+				wave++;
+				objectPool.ChangeGameObject(wave);
+				
+			}
+			
 		}
 
 		//===================================================
@@ -106,25 +132,27 @@ namespace TowerDefence {
 		/// <returns></returns>
 		private IEnumerator SpawnEntity() {
 			while( spawnEndlessly ) {
-				GameObject enemyGO = objectPool.GetGameObject();
-				enemyGO.transform.position = transform.position;
-				SpawnCount += 1;
+					GameObject enemyGO = objectPool.GetGameObject();
+					enemyGO.transform.position = transform.position;
+					SpawnCount += 1;
+					num++;
 
-				Enemy enemy = enemyGO.GetComponent<Enemy>();
-				enemy.EventDied += OnEnemyDied;
-				enemy.EventReachedTarget += OnEnemyReachedTarget;
-				enemy.SetHealthValue( EnemyHealth );
+					Enemy enemy = enemyGO.GetComponent<Enemy>();
+					enemy.EventDied += OnEnemyDied;
+					enemy.EventReachedTarget += OnEnemyReachedTarget;
+					enemy.SetHealthValue( EnemyHealth );
 
-				MoveTowardsGoal moveToGoal = enemyGO.GetComponent<MoveTowardsGoal>();
-				moveToGoal.StartMoving();
+					MoveTowardsGoal moveToGoal = enemyGO.GetComponent<MoveTowardsGoal>();
+					moveToGoal.StartMoving();
 
-				EnemyList.Add( enemyGO );
+					EnemyList.Add( enemyGO );
 
-				if( EventSpawned != null ) {
-					EventSpawned();
-				}
+					if( EventSpawned != null ) {
+						EventSpawned();
+					}
 
-				yield return new WaitForSeconds( spawnInterval );
+					yield return new WaitForSeconds( spawnInterval );
+				
 			}
 		}
 

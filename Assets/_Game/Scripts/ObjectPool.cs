@@ -5,9 +5,14 @@ using System.Collections.Generic;
 public class ObjectPool : MonoBehaviour {
 
 	[SerializeField]
-	private GameObject prefab;
-	
-	[SerializeField]
+	private GameObject enemy1;
+    [SerializeField]
+    private GameObject enemy2;
+    [SerializeField]
+    private GameObject prefab;
+
+
+    [SerializeField]
 	private int numOfObjects = 10;
 
 	[SerializeField]
@@ -86,4 +91,15 @@ public class ObjectPool : MonoBehaviour {
 		pool.Add( go );
 		return go;
 	}
+    public void ChangeGameObject(int i)
+    {
+        switch (i)
+        {
+            case 1: prefab = enemy1; break;
+            case 2: prefab = enemy2; break;
+            default: prefab = enemy1; break;
+        }
+
+    }
+
 }

@@ -86,10 +86,25 @@ void Awake() {
 			health.SetStartingHealth( startingHealth );
 		}
 
-		/// <summary>
-		/// Called when a the trigger is fired.
-		/// </summary>
-		/// <param name="collider">The collider.</param>
+        /// <summary>
+        /// Called when a the trigger is fired.
+        /// </summary>
+        /// <param name="collider">The collider.</param>
+        /// 
+        public void pointhitted()
+        {
+            health.Damage(10);
+            if (health.HealthValue <= 0)
+            {
+
+
+                a.SetTrigger("Die");
+                GetComponent<NavMeshAgent>().enabled = false;
+                footman.GetComponent<BoxCollider>().enabled = false;
+                isSinking = true;
+
+            }
+        }
 		void OnTriggerEnter( Collider collider ) {
 			if( collider.gameObject.tag == Tags.Projectile ) {
 

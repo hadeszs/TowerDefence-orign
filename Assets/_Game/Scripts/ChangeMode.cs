@@ -18,8 +18,8 @@ namespace TowerDefence {
 			Player.GetComponent<Turret>().enabled=true;
 			Player.GetComponent<TargetFinder>().enabled=true;
             Player.GetComponent<findAttackWp>().enabled = false;
-            wpcontainer = GameObject.Find("wp container");
-            wpcontainer.SetActive(false);
+            //wpcontainer = GameObject.Find("wp container");
+            //wpcontainer.SetActive(false);
             Change =false;
 			MainCamera.SetActive(true);
 			PlayerCamera.SetActive(false);
@@ -29,26 +29,28 @@ namespace TowerDefence {
 	// Update is called once per frame
 		void Update () {
 			if(Change){
-				MainCamera.SetActive(false);
+                aim.SetActive(true);
+                MainCamera.SetActive(false);
 				PlayerCamera.SetActive(true);
 				Player.GetComponent<PlayerControl>().enabled=true;
 				Player.GetComponent<Turret>().enabled=false;
 				Player.GetComponent<TargetFinder>().enabled=false;
 				Player.GetComponent<TargetFinder>().range=0;
                 Player.GetComponent<findAttackWp>().enabled = true;
-                wpcontainer.SetActive(true);
-                aim.SetActive(true);
+                //wpcontainer.SetActive(true);
+                
 			}
 			else{
-				MainCamera.SetActive(true);
+                aim.SetActive(false);
+                MainCamera.SetActive(true);
 				PlayerCamera.SetActive(false);
 				Player.GetComponent<PlayerControl>().enabled=false;
 				Player.GetComponent<Turret>().enabled=true;
 				Player.GetComponent<TargetFinder>().enabled=true;
                 Player.GetComponent<findAttackWp>().enabled = false;
                 Player.GetComponent<TargetFinder>().range=100;
-                wpcontainer.SetActive(false);
-                aim.SetActive(false);
+                //wpcontainer.SetActive(false);
+                
 			}
 		}
 	}
