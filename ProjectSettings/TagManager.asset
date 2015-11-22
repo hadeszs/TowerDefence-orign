@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Projectile
   - Goal
+  - weakPoint
+  - Fire
   layers:
   - Default
   - TransparentFX

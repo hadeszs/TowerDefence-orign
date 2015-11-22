@@ -7,6 +7,7 @@ namespace TowerDefence {
 		public GameObject Player;
 		public GameObject PlayerCamera;
 		public GameObject aim;
+        private GameObject wpcontainer;
 		public bool Change;
 		// Use this for initialization
 		void Start () {
@@ -16,7 +17,10 @@ namespace TowerDefence {
 			Player.GetComponent<PlayerControl>().enabled=false;
 			Player.GetComponent<Turret>().enabled=true;
 			Player.GetComponent<TargetFinder>().enabled=true;
-			Change=false;
+            Player.GetComponent<findAttackWp>().enabled = false;
+            wpcontainer = GameObject.Find("wp container");
+            wpcontainer.SetActive(false);
+            Change =false;
 			MainCamera.SetActive(true);
 			PlayerCamera.SetActive(false);
             aim.SetActive(false);
@@ -31,7 +35,9 @@ namespace TowerDefence {
 				Player.GetComponent<Turret>().enabled=false;
 				Player.GetComponent<TargetFinder>().enabled=false;
 				Player.GetComponent<TargetFinder>().range=0;
-				aim.SetActive(true);
+                Player.GetComponent<findAttackWp>().enabled = true;
+                wpcontainer.SetActive(true);
+                aim.SetActive(true);
 			}
 			else{
 				MainCamera.SetActive(true);
@@ -39,8 +45,10 @@ namespace TowerDefence {
 				Player.GetComponent<PlayerControl>().enabled=false;
 				Player.GetComponent<Turret>().enabled=true;
 				Player.GetComponent<TargetFinder>().enabled=true;
-				Player.GetComponent<TargetFinder>().range=100;
-				aim.SetActive(false);
+                Player.GetComponent<findAttackWp>().enabled = false;
+                Player.GetComponent<TargetFinder>().range=100;
+                wpcontainer.SetActive(false);
+                aim.SetActive(false);
 			}
 		}
 	}
